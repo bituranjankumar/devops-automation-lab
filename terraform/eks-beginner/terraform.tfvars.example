@@ -1,0 +1,10 @@
+region            = "ap-southeast-1"
+cluster_name      = "beginner-eks"
+node_instance_type = "t3.small"
+desired_capacity   = 2
+
+tags = {
+  project = "eks-beginner"
+  env     = "dev"
+  owner   = "bituranjankumar"
+}
