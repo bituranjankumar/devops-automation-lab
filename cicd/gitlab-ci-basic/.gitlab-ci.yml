@@ -1,0 +1,19 @@
+stages:
+  - build
+  - test
+
+build_job:
+  stage: build
+  image: python:3.9
+  script:
+    - pip install -r requirements.txt
+    - python setup.py sdist
+
+test_job:
+  stage: test
+  image: python:3.9
+  script:
+    - pip install -r requirements.txt
+    - pytest
+  needs:
+    - build_job
