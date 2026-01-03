@@ -1,4 +1,4 @@
-# Packer Basic AMI Project 🇸🇬  
+# Packer Basic AMI Project 
 
 This directory contains a basic Packer template that builds an Amazon Linux 2 AMI with Nginx pre-installed. It's a beginner-friendly introduction to using HashiCorp Packer for AMI creation.  
 
