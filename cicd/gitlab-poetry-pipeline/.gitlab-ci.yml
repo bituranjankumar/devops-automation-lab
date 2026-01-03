@@ -1,0 +1,43 @@
+image: python:3.10
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  POETRY_VIRTUALENVS_CREATE: "false"
+  PYTHONUNBUFFERED: "1"
+
+stages:
+  - install
+  - test
+  - build
+
+install:
+  stage: install
+  script:
+    - pip install --upgrade pip
+    - pip install poetry
+    - poetry install
+  cache:
+    paths:
+      - .cache/pip
+      - ~/.cache/pypoetry
+
+test:
+  stage: test
+  needs:
+    - install
+  script:
+    - poetry run pytest -q
+  artifacts:
+    when: always
+    reports:
+      junit: junit.xml
+
+build:
+  stage: build
+  needs:
+    - install
+  script:
+    - poetry build
+  artifacts:
+    paths:
+      - dist/
